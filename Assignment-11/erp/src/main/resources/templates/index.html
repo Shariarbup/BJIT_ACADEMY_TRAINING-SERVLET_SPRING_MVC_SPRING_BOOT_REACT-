@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Home</title>
+</head>
+<body>
+	<div id="navbar" class="">
+		<ul class="nav navbar-nav">
+			<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a>
+			</li>
+		</ul>
+	</div>
+	<h1>Welcome to my website.</h1>
+	<h1>
+		Welcome <span sec:authentication="principal.username">User</span>
+		
+		For going to ERP app <a th:href="@{/users}">Click here</a>
+	</h1>
+</body>
+</html>

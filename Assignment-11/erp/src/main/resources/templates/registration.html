@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Registration</title>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+</head>
+<body>
+	<div th:replace="header"></div>
+	<div class="container ">
+		<div class="row">
+			<div
+				class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+				<div class="card-body">
+					<div th:if="${param.success}">
+						<div class="alert alert-info">You have Successfully
+							Registered.!</div>
+					</div>
+					<h1>Registration form</h1>
+					<form th:action="@{/registration}" method="post"
+						th:object="${user}">
+						<div class="form-group">
+							<label>First Name</label> <input id="firstName" type="text" class="form-control"
+								name="firstName" th:field="*{firstName}"
+								placeholder="First Name"  autofocus="autofocus">
+
+							<div class="col">
+								<p th:if="${#fields.hasErrors('firstName')}"
+									th:errorclass="error" th:errors="*{firstName}"
+									class="alert alert-danger"></p>
+							</div>
+						</div>
+						<div class="form-group">
+							<label>Last Name</label> <input id="lastName" type="text" class="form-control"
+								name="lastName" th:field="*{lastName}" placeholder="Last Name">
+							<div class="col">
+								<p th:if="${#fields.hasErrors('lastName')}"
+									th:errorclass="error" th:errors="*{lastName}"
+									class="alert alert-danger"></p>
+
+							</div>
+						</div>
+						<div class="form-group">
+							<label>Email address</label> <input type="email"
+								class="form-control" id="exampleInputEmail1"
+								aria-describedby="emailHelp" placeholder="Enter email"
+								name="email" th:field="*{email}"> <small id="emailHelp"
+								class="form-text text-muted">We'll never share your
+								email with anyone else.</small>
+
+							<div class="col">
+								<p th:if="${#fields.hasErrors('email')}" th:errorclass="error"
+									th:errors="*{email}" class="alert alert-danger"></p>
+
+							</div>
+						</div>
+						<div class="form-group">
+							<label>Password</label> <input type="password"
+								class="form-control" id="exampleInputPassword1"
+								name="password" th:field="*{password}">
+						</div>
+						<div class="form-group">
+							<label>Address</label> <input id="address" type="text" class="form-control"
+								name="address" th:field="*{address}" placeholder="Address">
+							<div class="col">
+
+								<p th:if="${#fields.hasErrors('address')}" th:errorclass="error"
+									th:errors="*{address}" class="alert alert-danger"></p>
+
+							</div>
+						</div>
+						<div class="form-group">
+							<label>Joining Date</label> <input type="date"
+								class="form-control" name="joiningDate"
+								th:field="*{joiningDate}" placeholder="Select your Joining Date">
+
+							<div class="col">
+								<p th:if="${#fields.hasErrors('joiningDate')}"
+									th:errorclass="error" th:errors="*{joiningDate}"
+									class="alert alert-danger" />
+
+							</div>
+						</div>
+						<div class="form-group">
+							<button type="submit" class="btn btn-success">Register</button>
+							<span>Already Registered? <a th:href="@{/login}">Login</a></span>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

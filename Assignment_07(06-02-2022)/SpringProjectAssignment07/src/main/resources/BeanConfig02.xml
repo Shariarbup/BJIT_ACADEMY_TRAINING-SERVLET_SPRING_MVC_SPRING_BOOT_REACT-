@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- <bean id="vehicle1" class="com.bjit.vehicle.Vehicle" > <constructor-arg 
+		index="0" value="Car"></constructor-arg> <constructor-arg index="1" ref="engine2"></constructor-arg> 
+		</bean> <bean id="engine2" class="com.bjit.engine.Engine" > <constructor-arg 
+		index="0" value="Electrical Engine"></constructor-arg> </bean> -->
+
+
+
+	<bean id="vehicle1" class="com.bjit.vehicle.Car">
+		<property name="name" value="Car"></property>
+		<property name="engine02" ref="engine1"></property>
+	</bean>
+	<bean id="vehicle2" class="com.bjit.vehicle.Bike">
+		<property name="name" value="Bike"></property>
+		<property name="engine02" ref="engine2"></property>
+	</bean>
+	<bean id="vehicle3" class="com.bjit.vehicle.AutoRichkaw">
+		<property name="name" value="AutoRickshaw"></property>
+		<property name="engine02" ref="engine1"></property>
+	</bean>
+
+
+	<bean id="engine1" class="com.bjit.engine.ElectricalEngine">
+		<property name="engineType" value="Electrical Engine"></property>
+	</bean>
+	<bean id="engine2" class="com.bjit.engine.CombustionEngine">
+		<property name="engineType" value="Combustion Engine"></property>
+	</bean>
+
+</beans>

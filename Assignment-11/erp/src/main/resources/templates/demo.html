@@ -1,0 +1,181 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Edit User</title>
+
+<style>
+.alert {
+	font-size: 10px
+}
+</style>
+</head>
+
+<body>
+	<div th:replace="fragments/header"></div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8 mx-auto">
+
+
+				<h1>Edit user</h1>
+
+
+				<form action="#" th:action="@{/user/update}" th:object="${user}"
+					method="post">
+
+					<input type="hidden" th:field="*{id}" /> <input type="hidden"
+						th:field="*{password}" />
+
+
+					<div class="form-group row">
+
+						<label for="fname" class="col-sm-2 col-form-label">First
+							Name:</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control" id="fname"
+								name="firstName" th:field="*{firstName}">
+						</div>
+
+
+						<div class="col-sm-4">
+							<p th:if="${#fields.hasErrors('firstName')}"
+								th:errorclass="error" th:errors="*{firstName}"
+								class="alert alert-danger" />
+						</div>
+
+
+					</div>
+
+
+					<div class="form-group row">
+						<label for="lname" class="col-sm-2 col-form-label">Last
+							Name:</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control" id="lname"
+								name="lastName" th:field="*{lastName}">
+						</div>
+						<div class="col-sm-4">
+							<p th:if="${#fields.hasErrors('lastName')}" th:errorclass="error"
+								th:errors="*{lastName}" class="alert alert-danger" />
+
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label for="username" class="col-sm-2 col-form-label">Username:</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control" id="username"
+								name="username" th:field="*{username}">
+						</div>
+						<div class="col-sm-4">
+							<p th:if="${#fields.hasErrors('username')}" th:errorclass="error"
+								th:errors="*{username}" class="alert alert-danger" />
+
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label for="email" class="col-sm-2 col-form-label">Email:</label>
+						<div class="col-sm-6">
+							<input type="email" class="form-control" id="eamil" name="email"
+								th:field="*{email}">
+						</div>
+						<div class="col-sm-4">
+							<p th:if="${#fields.hasErrors('email')}" th:errorclass="error"
+								th:errors="*{email}" class="alert alert-danger" />
+
+						</div>
+					</div>
+
+					<!--  	<div class="form-group row">
+						<label for="password" class="col-sm-2 col-form-label">Password:</label>
+						<div class="col-sm-6">
+							<input type="password" class="form-control" id="password"
+								name="password" th:field="*{password}">
+						</div>
+						<div class="col-sm-4">
+							<p th:if="${#fields.hasErrors('password')}" th:errorclass="error"
+								th:errors="*{password}" class="alert alert-danger" />
+
+						</div>
+					</div>
+				-->
+
+					<div class="form-group row">
+						<label for="address" class="col-sm-2 col-form-label">Address:</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control" id="address"
+								name="address" th:field="*{address}">
+						</div>
+						<div class="col-sm-4">
+
+							<p th:if="${#fields.hasErrors('address')}" th:errorclass="error"
+								th:errors="*{address}" class="alert alert-danger" />
+
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label for="address" class="col-sm-2 col-form-label">Date
+							of Joining:</label>
+						<div class="col-sm-6">
+							<input type="date" class="form-control" id="date" name="joinedAt"
+								th:field="*{joinedAt}">
+						</div>
+						<div class="col-sm-4">
+							<p th:if="${#fields.hasErrors('joinedAt')}" th:errorclass="error"
+								th:errors="*{joinedAt}" class="alert alert-danger" />
+
+						</div>
+					</div>
+
+				<!--	<div sec:authorize="hasAuthority('EMPLOYEE')">
+						<div class="form-group row">
+							<label for="address" class="col-sm-2 col-form-label">Current
+								Role:</label> 
+							<div class="col-sm-6">
+								<select name="roleId" class="custom-select">
+								
+								
+									<tr th:each="role : ${user.roles}">
+										<option th:text="${role.roleName} " th:value="${role.id}"
+											selected></option>
+
+									</tr>
+								</select>
+							</div>
+						</div>
+					</div> -->
+
+					<div sec:authorize="hasAuthority('ADMIN')">
+						<div class="form-group row">
+							<label for="address" class="col-sm-2 col-form-label">Set
+								Role:</label>
+							<div class="col-sm-6">
+								<div class="input-group mb-3">
+									<div class="input-group-prepend">
+										<label class="input-group-text" for="inputGroupSelect01">Options</label>
+									</div>
+									<select class="custom-select" id="inputGroupSelect01"
+										name="roleId">
+										<option selected>Choose...</option>
+										<tr th:each="role : ${roles}">
+											<option th:text="${role.roleName}" th:value="${role.id}"></option>
+
+										</tr>
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+					<input type="submit" class="btn btn-primary" value="update">
+				</form>
+
+
+			</div>
+		</div>
+</body>
+</html>
